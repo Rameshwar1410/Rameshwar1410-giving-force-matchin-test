@@ -33,10 +33,31 @@ class MatchinTestController
      * Find luck number
      *
      * @param array $matrix
+     * @return int
      */
-    public function solutionTow(array $matrix)
+    public function solutionTow(array $matrix): int
     {
+        $result =0;
 
-        echo '</br>',"A class";
+        if (empty($matrix)) {
+            return 0;
+        }
+
+        for($i=0; $i<count($matrix[0]); $i++)
+        {
+            $maxRow[] = max(array_column($matrix, $i));
+        }
+
+        foreach ($matrix as $v) {
+                $minClm[] = min($v);
+        }
+
+        foreach ($maxRow as $v) {
+            if (in_array($v, $minClm)) {
+                $result = $v;
+            }
+        }
+
+        return $result;
     }
 }
